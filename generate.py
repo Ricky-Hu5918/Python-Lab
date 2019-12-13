@@ -19,30 +19,31 @@ Output:
 ]
 '''
 '''
-#思路：设定一个baseUnit列表[1,1]，将上一层列表中的元素两两相加的结果从第二个位置起开始插入baseUnit，插入次数正好等于上一层列表的长度-1，
+history 1:#思路：设定一个baseUnit列表[1,1]，将上一层列表中的元素两两相加的结果从第二个位置起开始插入baseUnit，插入次数正好等于上一层列表的长度-1，
 最后将baseUnit列表append到需要返回的大列表rr，即完成了一层的列表拼接，注意完成后要将baseUnit复原。
 '''
-
+'''
+history 2: #模仿肖哥的方法再写一次！！！
+'''
 def generate(numRows):
-    if not numRows:
+    if numRows<0:
         return []
 
-    if (numRows == 1):
-        return [[1]]
-
-    if (numRows == 2):
-        return [[1], [1, 1]]
-
-    baseUnit, tmp = [1, 1], 0
     rr = [[1], [1, 1]]
-    if (numRows > 2):
-        for i in range(2, numRows):
-            for j in range(len(rr[i - 1]) - 1):
-                tmp = (rr[i - 1][j]) + (rr[i - 1][j + 1])
-                baseUnit.insert(j + 1, tmp)
-            rr.append(baseUnit)
-            baseUnit = [1,1]
+    if numRows<=2:
+        return rr[:numRows]
+
+    pre_line = rr[1]
+
+    for i in range(numRows-2):
+        current_line = pre_line.copy()
+        current_line.append(1)
+        for j in range(len(pre_line)-1):
+            current_line[j+1] = pre_line[j] + pre_line[j+1]
+
+        rr.append(current_line)
+        pre_line = current_line.copy()
 
     return rr
 
-print(generate(8))
+print(generate(5))
