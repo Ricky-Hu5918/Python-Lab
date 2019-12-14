@@ -25,25 +25,26 @@ history 1:#思路：设定一个baseUnit列表[1,1]，将上一层列表中的�
 '''
 history 2: #模仿肖哥的方法再写一次！！！
 '''
-def generate(numRows):
-    if numRows<0:
+'''
+history 3: #肖哥recursion方式
+'''
+def pascal_triangle_line(n):
+    if n == 0:
         return []
+    elif n == 1:
+        return [1]
+    else:
+        new_row = [1]
+        last_row = pascal_triangle_line(n-1)
+        for i in range(len(last_row)-1):
+            new_row.append(last_row[i] + last_row[i+1])
+        new_row += [1]
+    return new_row
 
-    rr = [[1], [1, 1]]
-    if numRows<=2:
-        return rr[:numRows]
+def pascal_triangle(n):
+    res = []
+    for i in range(1, n+1):
+        res.append(pascal_triangle_line(i))
+    return res
 
-    pre_line = rr[1]
-
-    for i in range(numRows-2):
-        current_line = pre_line.copy()
-        current_line.append(1)
-        for j in range(len(pre_line)-1):
-            current_line[j+1] = pre_line[j] + pre_line[j+1]
-
-        rr.append(current_line)
-        pre_line = current_line.copy()
-
-    return rr
-
-print(generate(5))
+print(pascal_triangle(3))
