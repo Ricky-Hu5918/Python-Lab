@@ -13,18 +13,14 @@ Input: [2,2,1]
 Output: 1
 '''
 
+'''def singleNumber(nums):  #timeout
+    for i in range(len(nums)):
+        if nums.count(nums[i]) == 1:
+            return nums[i]'''
+
+#利用集合元素的去重性
 def singleNumber(nums):
-    nums.sort()
+    return sum(set(nums)) * 2 - sum(nums)
 
-    while (len(nums)):
-        if (len(nums) == 1):
-            return nums[0]
-
-        if (nums[0] != nums[1]):
-            return nums[0]
-        else:
-            nums.pop(0)
-            nums.pop(0)
-
-nums = [4,1,2,1,2]
+nums = [17,12,5,-6,12,4,17,-5,2,-3,2,4,5,16,-3,-4,15,15,-4,-5,-6] #[4,1,2,1,2]
 print(singleNumber(nums))
