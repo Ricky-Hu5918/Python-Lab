@@ -13,33 +13,33 @@ Output : Unbalanced
 [{]}-->Unbalanced
 '''
 '''
-#修正了输入为arr5 = '[)'  # unbalanced 进入死循环的问题
+#使用stack方法: 
+遍历字符串，如果是左括弧，则append到stack；
+如果是右括弧，则检查stack是否为空，若为空则为Unbalanced，或者检查pop出stack的字符是否为对应的左括弧，若不是，则为Unbalanced；
+最后检查valid标志和stack是否为空
 '''
 def balanced_parentheses(str):
-    p1 = ["{", "}", "[", "]", "(", ")"]
+    valid = True
+    stack = []
 
-    if (len(str)%2 != 0):
+    for each in str:
+        if ((each=='(') or (each=='[' ) or (each=='{')):
+            stack.append(each)
+        elif each==')':
+            if not stack or (stack.pop() != '('):
+                valid = False
+        elif each==']':
+            if not stack or (stack.pop() != '['):
+                valid = False
+        elif each=='}':
+            if not stack or (stack.pop() != '{'):
+                valid = False
+
+    if not stack and (valid):
+        return "Balanced"
+    else:
         return "Unbalanced"
 
-    str1 = list(str)
-
-    i, k = 0, 0
-    while (len(str1) != 0):
-        while (i <= len(str1)-1): #找到相邻成对的括号，然后remove掉
-            if ((str1[i] == p1[0]) and (str1[i+1] == p1[1])) or ((str1[i] == p1[2]) and (str1[i+1] == p1[3])) or ((str1[i] == p1[4]) and (str1[i+1] == p1[5])):
-                str1.pop(i+1)
-                str1.pop(i)
-                k += 1
-                i = 0
-            else:
-                i += 1
-
-            if (k == 0) and ((i == len(str1)-2) or (i == len(str1))):
-                return "Unbalanced"
-        else:
-            i, k = 0, 0
-    else:
-        return "Balanced"
 
 str = "[]({()[{}]})"  #"[(){((()))}()]" #"[{]}"
 arr1 = '{[]{()}}'       # balanced
