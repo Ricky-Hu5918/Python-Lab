@@ -16,24 +16,19 @@ Explanation:
 The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
 After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
 """
-
+'''代码优化：用一个变量j来标记'''
 def removeOuterParentheses(S):
     res = ''
-    m, j, k = 0, 0, 0
+    m, j = 0, 0
     for i in range(len(S)):
         if S[i]=='(':
             j += 1
         elif S[i]==')':
-            k += 1
+            j -= 1
 
-        if (j == k == 1):
-            res += ''
-            m = i+ 1
-            j = k = 0
-        elif (j == k) and ((j+k) >= 4):
+        if (j == 0):
             res += S[(m + 1):i]
-            m = i + 1
-            j = k = 0
+            m = i+ 1
 
     return res
 
@@ -41,4 +36,5 @@ S1 = "(()())(())" #out: ()()()
 S2 = "(()())(())(()(()))" #out: ()()()()(())
 S3 = "()((()))"   #out: (())
 S4 = "(()(()))()" #out: ()(())
-print(removeOuterParentheses(S1))
+S5 = "()"
+print(removeOuterParentheses(S5))
