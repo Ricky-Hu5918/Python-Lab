@@ -16,20 +16,33 @@ Explanation:
 The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
 After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
 """
-'''代码优化：用一个变量j来标记'''
-def removeOuterParentheses(S):
+'''代码优化：肖哥的stack版本，没有使用下面的arr.pop(0)这种操作
+    while len(input_list) > 0:
+        current_char = input_list.pop(0)
+'''
+def removeOuterParentheses(input_str):
+    input_list = list(input_str)
+    left = '('
+    right = ')'
+    stack = []
+
+    i = 0
     res = ''
-    m, j = 0, 0
-    for i in range(len(S)):
-        if S[i]=='(':
-            j += 1
-        elif S[i]==')':
-            j -= 1
+    while (i < len(input_list)):
+        current_char = input_list[i]
 
-        if (j == 0):
-            res += S[(m + 1):i]
-            m = i+ 1
+        if current_char == left:
+            stack.append(i)    #stack仅为计数用
 
+            if len(stack) > 1:
+                res += current_char
+
+        if current_char == right:
+            stack.pop()
+            if len(stack) > 0:  #stack为0，说明前面只有一个左括号，因此直接丢弃，比如S3，或者所有的右括弧都跟左括弧配对完成了
+                res += current_char
+
+        i += 1
     return res
 
 S1 = "(()())(())" #out: ()()()
@@ -37,4 +50,4 @@ S2 = "(()())(())(()(()))" #out: ()()()()(())
 S3 = "()((()))"   #out: (())
 S4 = "(()(()))()" #out: ()(())
 S5 = "()"
-print(removeOuterParentheses(S5))
+print(removeOuterParentheses(S3))
