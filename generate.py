@@ -28,23 +28,30 @@ history 2: #模仿肖哥的方法再写一次！！！
 '''
 history 3: #肖哥recursion方式
 '''
-def pascal_triangle_line(n):
-    if n == 0:
-        return []
-    elif n == 1:
-        return [1]
-    else:
-        new_row = [1]
-        last_row = pascal_triangle_line(n-1)
-        for i in range(len(last_row)-1):
-            new_row.append(last_row[i] + last_row[i+1])
-        new_row += [1]
-    return new_row
+'''
+history 4: #肖哥recursion V2
+'''
+def pascal_triangle(n, current_row=0, prev=[]):
 
-def pascal_triangle(n):
-    res = []
-    for i in range(1, n+1):
-        res.append(pascal_triangle_line(i))
+    # base case #1, if recursion finishes, the function should return an empty array
+    if current_row > n:
+        return []
+    # start recursion from here, given current_row is by default 0
+    elif current_row == 0:
+        return pascal_triangle(n, current_row+1, [1])
+
+    # start to do other recursion when current_row goes up, remember, variable prev will be updated after each recursion
+    # it is calculated by the calculate_pascal_triangle_row function
+    else:
+        return [prev] + pascal_triangle(n, current_row+1, calculate_pascal_triangle_row(prev))
+
+
+# let's calculate items for each recursion
+def calculate_pascal_triangle_row(prev):
+    res = [1] * (len(prev)+1)
+    for i in range(1, len(prev)):
+        res[i] = prev[i-1] + prev[i]
     return res
 
-print(pascal_triangle(3))
+
+print(pascal_triangle(10))
