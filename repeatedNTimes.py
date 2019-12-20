@@ -11,7 +11,17 @@ Example 1:
 Input: [1,2,3,3]
 Output: 3
 """
+import collections
 
+#0: 用collections库函数
+def repeatedNTimes(A):
+    count = collections.Counter(A)
+
+    for i in count:
+        if count[i]>1:
+            return i
+
+"""    
 '''
 #1: pop方法，先从原列表中弹出一个element，然后再检查这个element是否还在列表中，在的话就是那个重复的数字。
 '''
@@ -20,6 +30,7 @@ def repeatedNTimes(A):
         res = A.pop()
         if res in A:
             return res
+"""
 
 """
 #2：利用数组切片的方式，遍历第i个元素是否在以i+1开始的切片列表中
