@@ -13,12 +13,31 @@ Given nums = [3,2,2,3], val = 3,
 Your function should return length = 2, with the first two elements of nums being 2.
 It doesn't matter what you leave beyond the returned length.
 """
+'''#3: 为什么这种解法在pycharm中可以正确返回，但是在leetcode中却不行呢？'''
+def removeElement(nums, val):
+    res = len(nums)
 
+    for each in nums:
+        if (each == val):
+            res -= 1
+
+    return res
+
+"""#2
+def removeElement(nums, val):
+    while val in nums:
+        nums.remove(val)
+
+    return len(nums)
+"""
+
+""" #1
 def removeElement(nums, val):
     while nums.count(val):
         nums.remove(val)
 
     return len(nums)
+"""
 
 nums = [0,1,2,2,3,0,4,2]
 val = 2
