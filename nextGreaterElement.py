@@ -18,22 +18,30 @@ Explanation:
 """
 
 def nextGreaterElement(nums1, nums2):
-    res, not_exist = [], -1
+    #1 为nums2中的每个元素找到下一个大值, 并存入res表中
+    res = []
 
-    for each in nums1:
-        for i in range(nums2.index(each), len(nums2)):
-            if nums2[i] > each:
-                res.append(nums2[i])
+    for i in range(len(nums2) - 1):
+        for j in range((i+1), len(nums2)):
+            if nums2[i] < nums2[j]:
+                res.append(nums2[j])
                 break
 
-            if (i == len(nums2) - 1):
-                res.append(not_exist)
+            if j == len(nums2) - 1:
+                res.append(-1)
 
-    return res
+    res.append(-1) #最后一个元素，直接返回-1
+
+    #2 查res表返回nums1中元素对应的大值
+    reL = []
+    for i in range(len(nums1)):
+        reL.append(res[nums2.index(nums1[i])])
+    return reL
 
 nums1 = [4,1,2]
 nums2 = [1,3,4,2]
-
-nums3 = [2,1,3,5]
-nums4 = [2,0,3,1,4,5,7]
+nums3 = [2,4]
+nums4 = [1,2,3,4]
+nums5 = [2,1,3,5]
+nums6 = [2,0,3,1,4,5,7]
 print(nextGreaterElement(nums3, nums4))
