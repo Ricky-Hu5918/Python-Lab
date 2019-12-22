@@ -12,7 +12,25 @@ Example 1:
 Input: [1,3,5,6], 5
 Output: 2
 """
+'''#二分法的版本，注意while循环的判断条件，有时需要>=,有时只需要>'''
+def searchInsert(nums, target):
+    start_idx, end_idx = 0, len(nums) - 1
 
+    while start_idx < end_idx:
+        mid = int(start_idx + (end_idx - start_idx) / 2)
+
+        if (target == nums[mid]):
+            return mid
+
+        if (target > nums[mid]):
+            start_idx = mid + 1
+        else:
+            end_idx = mid - 1
+
+    #print(start_idx, end_idx)
+    return start_idx+1 if target > nums[start_idx] else start_idx
+
+"""
 '''#1: nums原本是升序的，所以只需要遍历比较nums的元素与target的大小，若大于等于target说明此处就应该插入target，若全部都比target小，说明target应该插入最后 '''
 def searchInsert(nums, target):
     for i in range(len(nums)):
@@ -20,6 +38,7 @@ def searchInsert(nums, target):
             return i
 
     return len(nums)
+"""
 
 """
 '''#2: 直接添加target，然后排序，即使target重复，返回其下标也是OK的'''
@@ -51,4 +70,6 @@ if __name__ == '__main__':
     target2 = 2
     target3 = 0
     target4 = 7
-    print(searchInsert(nums, target4))
+    nums1 = [2,5]
+    nums2 = [2]
+    print(searchInsert(nums1, target3))
