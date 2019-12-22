@@ -16,27 +16,25 @@ Explanation:
     For number 1 in the first array, the next greater number for it in the second array is 3.
     For number 2 in the first array, there is no next greater number for it in the second array, so output -1.
 """
-
+'''#肖哥filter版本'''
 def nextGreaterElement(nums1, nums2):
-    #1 为nums2中的每个元素找到下一个大值, 并存入res表中
     res = []
 
-    for i in range(len(nums2) - 1):
-        for j in range((i+1), len(nums2)):
-            if nums2[i] < nums2[j]:
-                res.append(nums2[j])
-                break
+    for each in nums1:
+        idx_in_2 = nums2.index(each)
 
-            if j == len(nums2) - 1:
-                res.append(-1)
+        #filtered = [x for x in nums2[idx_in_2:] if each < x]  #返回一个列表元素
 
-    res.append(-1) #最后一个元素，直接返回-1
+        # filter(function, iterable)方法，传递一个函数和可迭代对象，返回符合函数要求的一个迭代器对象
+        filtered = list(filter(lambda x: x>each, nums2[idx_in_2:] ))
 
-    #2 查res表返回nums1中元素对应的大值
-    reL = []
-    for i in range(len(nums1)):
-        reL.append(res[nums2.index(nums1[i])])
-    return reL
+        if len(filtered)>0:
+            res.append(filtered[0])
+        else:
+            res.append(-1)
+
+    return res
+
 
 nums1 = [4,1,2]
 nums2 = [1,3,4,2]
