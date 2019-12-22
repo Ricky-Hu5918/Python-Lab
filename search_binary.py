@@ -15,11 +15,6 @@ Explanation: 9 exists in nums and its index is 4
 
 def search_binary(nums, target):
     start_idx, end_idx = 0, (len(nums)-1)
-    if (start_idx == end_idx): # nums has only 1 element.
-        if (target == nums[start_idx]):
-            return start_idx
-        else:
-            return -1
 
     while (start_idx <= end_idx):
         mid = int(start_idx + (end_idx-start_idx)/2)
@@ -42,4 +37,4 @@ if __name__ == '__main__':
     target3 = -5
     nums1 = [2, 5]
     nums2 = [5]
-    print(search_binary(nums2, target3))
+    print(search_binary(nums2, target))
