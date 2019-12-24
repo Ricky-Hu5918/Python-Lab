@@ -22,7 +22,30 @@ each element of array A is an integer within the range [−2,147,483,648..2,147,
 A = [3,4,3,2,3,-1,3,3]
 output = [0,2,4,6,7]
 '''
+'''#4: 借用和优化了肖哥查找dominator的方法'''
+def leader(arr):
+    consecutive_size, candidate, res = 0, 0, []
 
+    for item in arr:
+        if consecutive_size == 0:
+            candidate = item
+            consecutive_size = 1
+        elif candidate == item:
+            consecutive_size += 1
+        else:
+            consecutive_size -= 1
+
+    occurrence = arr.count(candidate)
+    if occurrence > len(arr)/2:
+        for i in range(len(arr)):
+            if (candidate == arr[i]):
+                res.append(i)
+    else:
+        return -1
+
+    return res
+
+"""
 '''#3: 思路就是：先找到dominator元素，再遍历输出其index'''
 def leader(arr):
     rt_list = arr.copy()
@@ -43,6 +66,7 @@ def leader(arr):
         return -1
 
     return res
+"""
 
 """#2: 常规方法，用collections库函数
 import collections
@@ -84,6 +108,8 @@ def leader(arr):
 
 A = [3,4,3,2,3,-1,3,3]
 output = [0,2,4,6,7]
-B = [3,2,4,3,5,6]
-C = [1,2,3,4.5]
-print(leader(B))
+B = [3,2,4,3,5,6,3,7]
+C = [3,3,3,2,3,5,7]
+D = [1,1]
+E = [1,2]
+print(leader(C))
