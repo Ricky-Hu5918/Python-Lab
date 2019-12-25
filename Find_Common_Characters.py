@@ -45,18 +45,48 @@ def Find_Common_Characters(A):
     return A_set
 """
 
+"""
 '''#2： 利用Counter方法统计元素出现次数，并输出元素与其出现次数的字典，字典相交（&操作），获取到元素的最小出现次数'''
 from collections import Counter
+class Solution:
+    def commonChars(self, A: List[str]) -> List[str]:
+        res = Counter(A[0])
+
+        for i in range(1, len(A)):
+            res &= Counter(A[i])
+
+        return list(res.elements())
+"""
+
+'''#3 大体思路同#2，但没有使用collections库'''
 def Find_Common_Characters(A):
-    ans = Counter(A[0])
+    ans = {}
+    #将第一个字符串中所有元素及其出现的次数做成字典，作为模板存入ans中
+    for each in A[0]:
+        ans[each] = A[0].count(each)
 
-    for i in range(1, len(A)):
-        ans &= Counter(A[i])
+    for each in A[1:]:
+        ans_temp = {}
+        for i in each:  #遍历字符串，并将每个字符串中的元素和出现次数做成字典，存入ans_temp
+            ans_temp[i] = each.count(i)
 
-    return list(ans.elements())
+        for j in list(ans.keys()):  #遍历模板ans字典
+            if (j not in ans_temp): #对于在后面没有出现的元素进行删除
+                del ans[j]
+            else:   #对于在后面出现的元素，比较其出现次数的大小，将最小的value更新到模板ans字典中
+                if (ans.get(j) > ans_temp.get(j)):
+                    ans[j] = ans_temp.get(j)
+
+    res = []
+    for each in list(ans.keys()): #将ans中的元素按照其value值的数量还原至返回列表res中
+        while (ans[each] != 0):
+            res.append(each)
+            ans[each] -= 1
+
+    return res
 
 
 A = ["acabcddd","bcbdbcbd","baddbadb","cbdddcac","aacbcccd","ccccddda","cababaab","addcaccd"]
 A1 = ["bella","label","roller"]
 A2 = ["cool","lock","cook"]
-print(Find_Common_Characters(A))
+print(Find_Common_Characters(A1))
