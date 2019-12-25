@@ -21,6 +21,7 @@ Note:
 1 <= A[i].length <= 100
 A[i][j] is a lowercase letter
 """
+""" #1
 def Find_Common_Characters(A):
     A_set, res = [], []
 
@@ -42,8 +43,20 @@ def Find_Common_Characters(A):
                 each_list.remove(res[i])
 
     return A_set
+"""
+
+'''#2： 利用Counter方法统计元素出现次数，并输出元素与其出现次数的字典，字典相交（&操作），获取到元素的最小出现次数'''
+from collections import Counter
+def Find_Common_Characters(A):
+    ans = Counter(A[0])
+
+    for i in range(1, len(A)):
+        ans &= Counter(A[i])
+
+    return list(ans.elements())
+
 
 A = ["acabcddd","bcbdbcbd","baddbadb","cbdddcac","aacbcccd","ccccddda","cababaab","addcaccd"]
 A1 = ["bella","label","roller"]
 A2 = ["cool","lock","cook"]
-print(Find_Common_Characters(A2))
+print(Find_Common_Characters(A))
