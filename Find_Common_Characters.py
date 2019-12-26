@@ -57,7 +57,7 @@ class Solution:
 
         return list(res.elements())
 """
-
+"""
 '''#3 大体思路同#2，但没有使用collections库'''
 def Find_Common_Characters(A):
     ans = {}
@@ -84,7 +84,21 @@ def Find_Common_Characters(A):
             ans[each] -= 1
 
     return res
+"""
+#大神的代码，思路一样，但及其简练，收藏学习！
+def Find_Common_Characters(A):
+    if not A:
+        return []
 
+    res = []
+    for each in set(A[0]):
+        count = [w.count(each) for w in A]
+        s = each * min(count)
+        print("s", s)
+        for i in s:
+            res.append(i)
+
+    return res
 
 A = ["acabcddd","bcbdbcbd","baddbadb","cbdddcac","aacbcccd","ccccddda","cababaab","addcaccd"]
 A1 = ["bella","label","roller"]
