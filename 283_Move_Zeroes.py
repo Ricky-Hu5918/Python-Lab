@@ -56,7 +56,19 @@ def moveZeroes3(nums):
 
     return nums
 
+'''#4: 肖哥的方法，遍历列表，将非零的元素从0位置开始覆盖，剩余位置用0来覆盖. 44ms,效率非常高！！'''
+def moveZeroes4(nums):
+    none_zero_item = 0
+    for each in nums:
+        if (each != 0):
+            nums[none_zero_item] = each
+            none_zero_item += 1
+
+    for i in range(none_zero_item, len(nums)):
+        nums[i] = 0
+
+    return nums
 
 nums = [0,1,0,3,12]
 nums1 = [0,0,1]
-print(moveZeroes3(nums1))
+print(moveZeroes4(nums))
