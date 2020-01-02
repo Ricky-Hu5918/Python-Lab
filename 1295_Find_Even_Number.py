@@ -66,5 +66,9 @@ def findEvenNumbers5(nums):
         odd_count += len(str(item))%2
     return len(nums)-odd_count
 
+'''#6: 装逼的境界，一行代码搞定！'''
+def findEvenNumbers6(nums):
+    return (len(nums)-sum(len(str(item))%2 for item in nums))
+
 nums = [12, 345, 2, 6, 7896]  #2
-print(findEvenNumbers5(nums))
+print(findEvenNumbers6(nums))
