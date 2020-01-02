@@ -70,5 +70,12 @@ def findEvenNumbers5(nums):
 def findEvenNumbers6(nums):
     return (len(nums)-sum(len(str(item))%2 for item in nums))
 
+'''#7: one-line code 合集'''
+def findEvenNumbers7(nums):
+    return sum([not len(str(item))%2 for item in nums])
+
+def findEvenNumbers8(nums):
+    return sum(1 for item in nums if not len(str(item))%2)
+
 nums = [12, 345, 2, 6, 7896]  #2
-print(findEvenNumbers6(nums))
+print(findEvenNumbers8(nums))
