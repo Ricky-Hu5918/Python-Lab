@@ -59,5 +59,12 @@ def findEvenNumbers3(nums):
 def findEvenNumbers4(nums):
     return sum(1 for item in nums if (len(str(item)) % 2 == 0))
 
+'''#5: 思路一样，都是转成字符串，但是效率比#4高一些'''
+def findEvenNumbers5(nums):
+    odd_count = 0
+    for item in nums:
+        odd_count += len(str(item))%2
+    return len(nums)-odd_count
+
 nums = [12, 345, 2, 6, 7896]  #2
-print(findEvenNumbers4(nums))
+print(findEvenNumbers5(nums))
