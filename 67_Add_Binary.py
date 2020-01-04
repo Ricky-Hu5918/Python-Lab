@@ -26,23 +26,21 @@ def addBinary(a, b):
         target //= 10
 
     target_list = target_list[::-1]
-    ll = len(target_list)-1
     bool_addOne = False
 
-    for i in range(len(target_list)):
-        if ((target_list[ll]) == 2):
+    '''#逆序进行for循环'''
+    for i in range(len(target_list)-1, -1, -1):
+        if ((target_list[i]) == 2):
             if bool_addOne:
-                target_list[ll] = 1
+                target_list[i] = 1
             else:
                 bool_addOne = True
-                target_list[ll] = 0
-        elif (target_list[ll] == 1) and bool_addOne:
-            target_list[ll] = 0
-        elif (target_list[ll] == 0) and bool_addOne:
-            target_list[ll] = 1
+                target_list[i] = 0
+        elif (target_list[i] == 1) and bool_addOne:
+            target_list[i] = 0
+        elif (target_list[i] == 0) and bool_addOne:
+            target_list[i] = 1
             bool_addOne = False
-
-        ll -= 1
 
     if bool_addOne:
         target_list.insert(0, 1)
