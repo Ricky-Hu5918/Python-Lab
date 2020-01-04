@@ -20,12 +20,12 @@ Follow up:
 Could you solve it without converting the integer to a string?
 """
 '''#1: normal method. 76ms/12.8MB'''
-def isPalindrome(x):
+def isPalindrome1(x):
     if x < 0:
         return False
 
     res = []
-    for i in range(len(str(x))):
+    while (x != 0):
         res.append(x%10)
         x = x//10
 
@@ -34,9 +34,30 @@ def isPalindrome(x):
     else:
         return False
 
+'''#2: 首尾交换，68ms/12.7MB'''
+def isPalindrome2(x):
+    if x < 0:
+        return False
+
+    res = []
+    while (x != 0):
+        res.append(x%10)
+        x = x//10
+
+    res_copy = res.copy()
+    ll = len(res)-1
+    for i in range(len(res)//2):
+        res[i], res[ll-i] = res[ll-i], res[i]
+
+    if (res == res_copy):
+        return True
+    else:
+        return False
+
 
 x1 = 121  #true
 x2 = -121 #false
 x3 = 10   #false
+x4 = 123321
 
-print(isPalindrome(x3))
+print(isPalindrome2(x4))
