@@ -46,10 +46,48 @@ def reverse(x):
     else:
         return int(res_sign + str(rt_int))
 
+'''#2: 频繁使用了强制转换，int转str，str转list'''
+def reverse2(x):
+    if (-9 <= x <= 9):
+        return x
+
+    x_flag = ''
+    x_list = list(str(x))
+    x_list.reverse()
+
+    if (x_list[-1] == '-') or (x_list[-1] == '0'):
+        rt_list = x_list[:-1]
+        x_flag = x_list[-1]
+    else:
+        rt_list = x_list
+
+    rt_str = x_flag + ''.join(rt_list)
+    return int(rt_str) if (-2**31<= int(rt_str) <= 2**31 -1) else 0
+
+'''#3: xk's method.'''
+def reverse3(x):
+    if (-9 <= x <= 9):
+        return x
+
+    x_abs = abs(x)
+    len_x_abs = len(str(x_abs))  #获取整数的位数长度
+    ll = len_x_abs - 1
+    rt_int = 0
+    print(x_abs)
+    for i in range(len_x_abs):
+        rt_int += (x_abs%10)*(10**(ll - i))
+        x_abs //= 10
+
+    print(rt_int)
+    if (x < 0):
+        rt_int = 0 - rt_int
+
+    return rt_int if (-2**31<= (rt_int) <= 2**31 -1) else 0
+
 x0 = -3    #-3
 x1 = 123   #321
 x2 = -123  #-321
 x3 = 120   #21
 x4 = 1534236469  #0
-print(reverse(x2))
+print(reverse3(x4))
 
