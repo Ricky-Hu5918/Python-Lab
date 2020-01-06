@@ -36,14 +36,16 @@ def maximum_slice(A):
     temp_max, global_max = A[0], A[0]
     for i in range(1, len(A)):
         temp = temp_max + A[i]
-        if temp > A[0]:
+        if temp > A[i]:
             temp_max = temp
+            if temp_max > global_max:
+                global_max = temp_max
         else:
             temp_max = A[i]
-            global_max =
 
+    return global_max
 
 arr1 = [5, -4, 8, -10, -2, 4, -3, 2, 7, -8, 3, -5, 3]
 arr2 = [1,2,3,-8,5,6]
-print(maximum_slice(arr2))
-print(max_slice(arr2))
+print(maximum_slice(arr1))
+print(max_slice(arr1))
