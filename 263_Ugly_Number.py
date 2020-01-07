@@ -44,27 +44,44 @@ def isUgly1(num):
 
     return True
 
-'''#2: 拆分成了2个函数，同时使用了递归。'''
+'''#2: 拆分成了2个函数，同时在分函数中使用了递归。'''
 def isUgly2(num):
     if (num<=0):
         return False
 
     for factor in [2,3,5]: #把每个factor都除尽，最后判断num的值，为1则为True
-        num = div_result(num, factor)
+        num = div_result2(num, factor)
 
     return True if num == 1 else False
 
-def div_result(num, factor):  #把一个factor除尽
+def div_result2(num, factor):  #把一个factor除尽
     if (num%factor == 0):
         num //= factor
     else:
         return num
 
-    return div_result(num, factor)
+    return div_result2(num, factor)
 
+'''#3: 肖哥的迭代方法，教科书级别的，要学习！'''
+def isUgly3(num):
+    if (num<=0):
+        return False
+    elif (num == 1):
+        return True
+    else:
+        num = div_result3(num)
+        if (not num):
+            return False
+        else:
+            return isUgly3(num)
 
+def div_result3(num):
+    for item in [2, 3, 5]:
+        if (num%item == 0):
+            return num//item
+    return 0
 
-num = 10 #false
+num = 14 #false
 num1 = 80 #true
 num2 = 35
-print(isUgly2(num))
+print(isUgly3(num1))
