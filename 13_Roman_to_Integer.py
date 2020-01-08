@@ -42,6 +42,48 @@ def romanToInt(s):
 
     return total_num
 
+'''#2: 把字符串处理成单个、直接可以识别的罗马数字'''
+def romanToInt1(s):
+    all_numbers_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000, 'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900}
+    double_numbers_list = ['IV', 'IX', 'XL', 'XC', 'CD', 'CM']
+
+    res, idx = [], 0
+    ll = len(list(s))
+    while (idx<ll):
+        if (idx < ll-1) and (s[idx]+s[idx+1]) in double_numbers_list:
+            res.append(s[idx] + s[idx + 1])
+            idx += 2
+        else:
+            res.append(s[idx])
+            idx += 1
+
+    '''# return sum(all_numbers_dict[item] for item in res) 下面的代码可以用这一行搞定，简洁但效率极其低下'''
+    total_num = 0
+    for item in res:
+        total_num += all_numbers_dict[item]
+
+    return total_num
+
+'''#3: 方法#1和#2的结合优化版'''
+def romanToInt2(s):
+    all_numbers_dict = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000, 'IV': 4, 'IX': 9, 'XL': 40, 'XC': 90, 'CD': 400, 'CM': 900}
+    double_numbers_list = ['IV', 'IX', 'XL', 'XC', 'CD', 'CM']
+
+    total_num, idx = 0, 0
+    ll = len(list(s))
+    while (idx<ll):
+        if (idx < ll-1) and (s[idx]+s[idx+1]) in double_numbers_list:
+            total_num += all_numbers_dict[s[idx]+s[idx+1]]
+            idx += 2
+        else:
+            total_num += all_numbers_dict[s[idx]]
+            idx += 1
+
+    return total_num
+
+
+
 s = "LVIII"  #58
 s1 = "MCMXCIV" #1994
-print(romanToInt(s1))
+s3 = "IIIIMIIIC"
+print(romanToInt2(s1))
