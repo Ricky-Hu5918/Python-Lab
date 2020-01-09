@@ -53,7 +53,19 @@ def findSpecialInteger4(arr):
 
     return arr[0]
 
+'''#5: 思路：真正的按照len/4的步长进行搜索，因为返回值的index一定位于len/4，或者len/2，或者3*len/4的位置'''
+def findSpecialInteger5(arr):
+    search_step = 1 if (not len(arr)//4) else len(arr)//4
+
+    for i in range(search_step, len(arr), search_step):
+        print(arr[i], arr.count(arr[i]))
+        if (arr.count(arr[i])>search_step):
+            return arr[i]
+
+    return arr[0]
+
+
 arr = [1]
 arr1 = [1,2,2,6,6,6,6,7,10]
 arr2 = [9057,13452,13452,13452,13452,13452,14141,14448,60395,95081]
-print(findSpecialInteger1(arr2))
+print(findSpecialInteger5(arr))
