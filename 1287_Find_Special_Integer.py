@@ -58,8 +58,17 @@ def findSpecialInteger5(arr):
     search_step = 1 if (not len(arr)//4) else len(arr)//4
 
     for i in range(search_step, len(arr), search_step):
-        print(arr[i], arr.count(arr[i]))
         if (arr.count(arr[i])>search_step):
+            return arr[i]
+
+    return arr[0]
+
+'''#6: 方法#5的另一种解法'''
+def findSpecialInteger6(arr):
+    search_step = 1 if (not len(arr)//4) else len(arr)//4
+
+    for i in range(len(arr)-search_step):
+        if (arr[i] == arr[i+search_step]):
             return arr[i]
 
     return arr[0]
@@ -68,4 +77,5 @@ def findSpecialInteger5(arr):
 arr = [1]
 arr1 = [1,2,2,6,6,6,6,7,10]
 arr2 = [9057,13452,13452,13452,13452,13452,14141,14448,60395,95081]
-print(findSpecialInteger5(arr))
+print(findSpecialInteger5(arr2))
+print(findSpecialInteger6(arr2))
