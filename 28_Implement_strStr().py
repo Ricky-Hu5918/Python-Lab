@@ -67,6 +67,9 @@ def strStr2(haystack, needle):
 
     return -1
 
+'''#3: 使用find方法，一行搞定！但没什么意义，还是要尽量少用系统自带的函数。'''
+def strStr3(haystack, needle):
+    return haystack.find(needle)
 
 haystack, needle = "hello", "ll"
 haystack1, needle1 = "aaaba", "baa"
