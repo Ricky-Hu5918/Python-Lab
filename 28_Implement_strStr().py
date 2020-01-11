@@ -71,8 +71,50 @@ def strStr2(haystack, needle):
 def strStr3(haystack, needle):
     return haystack.find(needle)
 
+'''#4: sunday算法'''
+def strStr4(haystack, needle):
+    # Func: 计算偏移表
+    #偏移表的作用是存储每一个在 needle 中出现的字符，在 needle 中出现的最右位置到尾部的距离 +1
+    def calShiftMat(st):
+        dic = {}
+        for i in range(len(st) - 1, -1, -1):
+            if not dic.get(st[i]):
+                dic[st[i]] = len(st) - i
+        dic["ot"] = len(st) + 1
+        return dic
+
+    if not needle: return 0
+    if not haystack: return -1
+
+    idx = 0
+    len_needle, len_haystack = len(needle), len(haystack)
+    if (len_needle > len_haystack): return -1
+    # 偏移表预处理
+    dic = calShiftMat(needle)
+    while (idx+len_needle <= len_haystack):
+        str_cut = haystack[idx:idx+len_needle]
+        if (str_cut == needle):
+            return idx
+        else:
+            if (idx + len_needle >= len_haystack): # 边界处理
+                return -1
+
+            cur_c = haystack[idx + len_needle] # 不匹配情况下，根据下一个字符的偏移，移动idx
+            print('cur_c', cur_c)
+            if dic.get(cur_c):
+                idx += dic[cur_c]
+                print('curc_idx', dic[cur_c], idx)
+            else:
+                idx += dic["ot"]
+                print('idx', idx)
+
+    return -1 if idx+len_needle >= len_haystack else idx
+
+
 haystack, needle = "hello", "ll"
 haystack1, needle1 = "aaaba", "baa"
 haystack2, needle2 = "babba", "bba"
 haystack3, needle3 = "babaa", "baa"
-print(strStr2(haystack3, needle3))
+haystack4, needle4 = "bbaabab", "baa"
+haystack5, needle5 = "checkouthisout", "this"
+print(strStr4(haystack5, needle5))
