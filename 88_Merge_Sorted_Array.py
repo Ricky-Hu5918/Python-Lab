@@ -37,6 +37,43 @@ def merge(nums1, m, nums2, n):
 
     return nums1
 
+'''#2: 使用系统自带函数'''
+def merge2(nums1, m, nums2, n):
+    for i in range(n):
+        nums1.insert(m+i, nums2[i])
+
+    for i in range(len(nums1)-1, -1, -1):
+        if (nums1[i] == 0) and (i >= m+n):
+            nums1.pop()
+        else:
+            break
+
+    return sorted(nums1)
+
+'''#3: 肖哥的思路：直接替换，再排序'''
+def merge3(nums1, m, nums2, n):
+    for i in range(m, m+n):
+        nums1[i] = nums2[i-m]
+
+    return sorted(nums1)
+
+'''#4: 肖哥的思路，O(N)复杂度，三指针解法'''
+def merge4(nums1, m, nums2, n):
+    tmp = nums1[:m]
+    idx, idx1, idx2 = 0, 0, 0
+    while (idx < m+n):
+        if (idx2<n) and (idx1 >= m or tmp[idx1] >= nums2[idx2]):
+            nums1[idx] = nums2[idx2]
+            idx2 += 1
+        else:
+            nums1[idx] = tmp[idx1]
+            idx1 += 1
+
+        idx += 1
+
+    return nums1
+
+
 nums1, nums2 = [1,2,3,0,0,0], [2,5,6]  #[1,2,2,3,5,6]
 m, n= 3, 3
 
@@ -46,4 +83,4 @@ m3, n3 = 6, 3
 nums5, nums6 = [-1,-1,0,0,0,0], [-1,0]
 m4, n4 = 4, 2
 
-print(merge(nums1, m, nums2, n))
+print(merge4(nums5, m4, nums6, n4))
