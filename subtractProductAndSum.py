@@ -48,6 +48,12 @@ def subtractProductAndSum3(n):
 
     return (reduce(lambda x,y:x*y, num)-reduce(lambda x,y:x+y, num))
 
+'''#4: xk's version'''
+from math import log10
+def subtractProductAndSum4(n):
+    return reduce(lambda x,y:x*y, [n//(10**x)%10 for x in range(int(log10(n)+1))]) - \
+reduce(lambda x,y:x+y, [n//(10**x)%10 for x in range(int(log10(n)+1))])
+
 if __name__ == '__main__':
-    n = 34
-    print(subtractProductAndSum3(n))
+    n = 234
+    print(subtractProductAndSum4(n))
