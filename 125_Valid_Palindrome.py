@@ -18,10 +18,20 @@ def isPalindrome(s):
 
     return True if (str_s == str_s[::-1]) else False
 
+'''#2: 尽可能少的使用系统自带函数'''
 def isPalindrome2(s):
-    idx_start, idx_end = 0, len(s)-1
-    while (idx_end != idx_start) or (idx_end != idx_start+1):
-        if (s[idx_start] != s[idx_end]):
+    if not s: return True
+
+    str_s = ''
+    for i in range(len(s)):
+        if (97 <= ord(s[i]) <= 122) or (48 <= ord(s[i]) <= 57):
+            str_s += s[i]
+        elif (65 <= ord(s[i]) <= 90):
+            str_s += chr(ord(s[i])+32)
+
+    idx_start, idx_end = 0, len(str_s)-1
+    while (idx_end != idx_start if len(str_s)%2 else idx_end > idx_start):
+        if (str_s[idx_start] != str_s[idx_end]):
             return False
         else:
             idx_end -= 1
@@ -32,5 +42,6 @@ def isPalindrome2(s):
 
 s = "A man, a plan, a canal: Panama"
 s1 = "race a car"
-s2 = 'amanaplanacanalpanama'
-print(isPalindrome2(s2))
+s2 = 'amanaplanacbanalpanama'
+s3 = "a."
+print(isPalindrome2(s))
