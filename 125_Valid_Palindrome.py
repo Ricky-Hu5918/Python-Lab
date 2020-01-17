@@ -29,6 +29,12 @@ def isPalindrome2(s):
         elif (65 <= ord(s[i]) <= 90):
             str_s += chr(ord(s[i])+32)
 
+    for i in range(len(str_s)//2):
+        if (str_s[i] != str_s[len(str_s)-i-1]):
+            return False
+
+    return True
+'''  #自己的处理方法，比较弱鸡，上面是肖哥的处理方法，值得学习！
     idx_start, idx_end = 0, len(str_s)-1
     while (idx_end != idx_start if len(str_s)%2 else idx_end > idx_start):
         if (str_s[idx_start] != str_s[idx_end]):
@@ -36,12 +42,31 @@ def isPalindrome2(s):
         else:
             idx_end -= 1
             idx_start += 1
+'''
+
+
+'''#3: xk's solution.'''
+def isPalindrome3(chars):
+
+    if len(chars) == 1 or len(chars) == 0:
+        return True
+
+    alpha_numeric_removed_chars = filter(lambda x: (ord(x) in range(65, 91)) or (ord(x) in range(48, 58)) or (ord(x) in range(97, 123)), chars)
+    print(alpha_numeric_removed_chars)
+
+    processed_chars = list(map(lambda x: chr(ord(x) - 32) if ord(x) in range(97, 123) else x, alpha_numeric_removed_chars))
+    print(processed_chars)
+
+    # print(processed_chars)
+    for i in range(len(processed_chars)//2):    #值得学习！！！
+        if processed_chars[i] != processed_chars[len(processed_chars)-i-1]:
+            return False
 
     return True
 
 
 s = "A man, a plan, a canal: Panama"
 s1 = "race a car"
-s2 = 'amanaplanacbanalpanama'
+s2 = 'amanaplanacanalpanama'
 s3 = "a."
-print(isPalindrome2(s))
+print(isPalindrome2(s3))
