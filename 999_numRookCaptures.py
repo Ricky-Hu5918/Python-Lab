@@ -96,6 +96,36 @@ def cal_num_at_y_direction(x, y, board):
             break
     return count
 
+'''#3: 参考别人的题解，把行和列元素当做字符来处理'''
+def numRookCaptures3(board):
+    def cal_nums(s):
+        count = 0
+        s = s.replace('.', '')
+        if ('pR' in s):
+            count += 1
+        if ('Rp' in s):
+            count += 1
+        return count
+
+    #find the position of R
+    len_board = 8
+    R_x, R_y = 0, 0
+    for i in range(len_board):
+        if 'R' in board[i]:
+            R_x = i
+            break
+    R_y = board[R_x].index('R')
+
+    #calculate the numbers captured by Rook
+    counts = 0
+    s = ''.join(board[R_x])
+    counts += cal_nums(s)
+
+    s = ''.join(board[i][R_y] for i in range(len_board))
+    counts += cal_nums(s)
+
+    return counts
+
 #3
 board =  [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","R",".",".",".","p"],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."],[".",".",".",".",".",".",".","."]]
 #0
@@ -103,4 +133,4 @@ board1 = [[".",".",".",".",".",".",".","."],[".","p","p","p","p","p",".","."],["
 #3
 board2 = [[".",".",".",".",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".","p",".",".",".","."],["p","p",".","R",".","p","B","."],[".",".",".",".",".",".",".","."],[".",".",".","B",".",".",".","."],[".",".",".","p",".",".",".","."],[".",".",".",".",".",".",".","."]]
 
-print(numRookCaptures2(board2))
+print(numRookCaptures3(board1))
