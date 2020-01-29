@@ -52,7 +52,32 @@ def removeDuplicates3(nums):
 
     return len(nums)
 
+'''#4: xk's version'''
+def removeDuplicates4(nums):
+    pre, idx = '', 0
 
-nums1 = [0,0,0]
+    for each in nums:
+        if (pre != each):
+            pre = each
+            nums[idx] = each
+            idx += 1
+
+    return idx
+
+'''#5: lj's version'''
+def removeDuplicates5(nums):
+    pre, cur = 0, 1
+
+    while (cur < len(nums)):
+        if (nums[pre] != nums[cur]):
+            nums[pre+1] = nums[cur]
+            pre += 1
+            cur += 1
+        else:
+            cur += 1
+
+    return pre+1
+
+nums1 = [0,0,0,1]
 nums = [0, 0, 1, 1, 1, 2, 2, 3, 3, 4]
-print(removeDuplicates3(nums))
+print(removeDuplicates4(nums))
