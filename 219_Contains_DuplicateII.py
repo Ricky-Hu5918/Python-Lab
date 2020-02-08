@@ -38,9 +38,37 @@ def containsNearbyDuplicate2(nums, k):
 
     return False
 
+'''#3: 参考题解，思路非常清晰'''
+def containsNearbyDuplicate3(nums, k):
+    if (len(set(nums)) == len(nums)): #不增加这个判断，也能pass
+        return False
+
+    hash = {}
+    for i in range(len(nums)):
+        if (nums[i] not in hash):
+            hash[nums[i]] = i
+        else:
+            if (i - hash[nums[i]])<=k:
+                return True
+            else:
+                hash[nums[i]] = i
+
+    return False
+
+'''#4: xk's solution 非常简洁，高效，思路跟#3的hash表一样'''
+def containsNearbyDuplicate4(nums, k):
+    dict_nums = {}
+
+    for idx, value in enumerate(nums):
+        if (value in dict_nums) and ((idx - dict_nums[value])<=k):
+            return True
+        dict_nums[value] = idx
+
+    return False
+
 nums1, k1 = [9, 9], 2 #true
 nums2, k2 = [1,2,3,4,5,6,7,8,9,9], 3 #true
 nums3, k3 = [1,2,3,1,2,3], 2 #false
 nums4, k4 = [1,0,1,1], 1 #true
-print(containsNearbyDuplicate2(nums4, k4))
+print(containsNearbyDuplicate3(nums3, k3))
 
