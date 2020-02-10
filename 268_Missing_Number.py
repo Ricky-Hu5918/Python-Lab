@@ -12,7 +12,7 @@ Note:
 Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
 '''
 
-'''#1:利用元组运算，找出丢失的元素'''
+'''#1:利用集合运算，找出丢失的元素'''
 def missingNumber1(nums):
     tmp = [x for x in range(len(nums))]
     k = set(tmp).difference(set(nums))
