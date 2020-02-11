@@ -32,26 +32,23 @@ def lengthOfLongestSubstring1(s):
     else:
         return max(max(count_list),len(hash_s))
 
-'''#2: not work, need to be continued'''
-def lengthOfLongestSubstring(s):
+'''#2: 68ms, same as #1, just use list instead of dictionary'''
+def lengthOfLongestSubstring2(s):
     if (not s): return 0
-    if (len(s) == 1): return 1
+    if (len(s) == 1) or (len(set(s)) == 1): return 1
 
-    cur_count, max_count = 0, 0
-    tmp = ''
+    s_list, count_list = [], []
+    for i in range(len(s)):
+        if (s[i] in s_list):
+            count_list.append(len(s_list))
+            del s_list[:s_list.index(s[i]) + 1]
+        s_list.append(s[i])
 
-    for each in s:
-        if (each not in tmp):
-            cur_count += 1
-            tmp += each
-            max_count = cur_count if cur_count >= max_count else max_count
-        else:
-            print(cur_count, max_count)
-            tmp = ''
-            tmp += each
-            cur_count = 1
+    if not count_list:
+        return len(s_list)
+    else:
+        return max(max(count_list), len(s_list))
 
-    return max_count
 
 
 s = "dvdf" #3
@@ -61,4 +58,4 @@ s3 = "bbbbb"   #1
 s4 = 'bacade'  #4
 s5 = 'abcde' #5
 s6 = 'abcadef' #6
-print(lengthOfLongestSubstring1(s6))
+print(lengthOfLongestSubstring2(s))
