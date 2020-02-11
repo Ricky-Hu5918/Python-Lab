@@ -7,6 +7,32 @@ Output: 3
 Explanation: The answer is "abc", with the length of 3.
 """
 
+'''#1: 92ms'''
+def lengthOfLongestSubstring1(s):
+    if (not s): return 0
+    if (len(s) == 1) or (len(set(s))==1): return 1
+
+    hash_s = {}
+    count_list = []
+
+    for i in range(len(s)):
+        if (s[i] in hash_s):
+            count_list.append(len(hash_s))
+            for each in list(hash_s.keys()):
+                if each != s[i]:
+                    del hash_s[each]
+                else:
+                    del hash_s[s[i]]
+                    break
+
+        hash_s[s[i]] = i
+
+    if not count_list:
+        return len(hash_s)
+    else:
+        return max(max(count_list),len(hash_s))
+
+'''#2: not work, need to be continued'''
 def lengthOfLongestSubstring(s):
     if (not s): return 0
     if (len(s) == 1): return 1
@@ -27,9 +53,12 @@ def lengthOfLongestSubstring(s):
 
     return max_count
 
+
 s = "dvdf" #3
 s1 = "pwwkew"  #3
 s2 = "abcabcbb"  #3
 s3 = "bbbbb"   #1
 s4 = 'bacade'  #4
-print(lengthOfLongestSubstring(s))
+s5 = 'abcde' #5
+s6 = 'abcadef' #6
+print(lengthOfLongestSubstring1(s6))
