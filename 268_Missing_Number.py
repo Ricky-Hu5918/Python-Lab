@@ -32,6 +32,10 @@ def missingNumber2(nums):
 
     return nums[-1]+1
 
+'''#3: 受肖哥思路的启发'''
+def missingNumber3(nums):
+    return sum([x for x in range(len(nums)+1)])-sum(nums)
+
 nums1 = [9,6,4,2,3,5,7,0,1]
 nums2 = [1]
 nums3 = [1, 0]
