@@ -45,6 +45,25 @@ def minTimeToVisitAllPoints(points):
 
     return times
 
+'''#2: 每次移动最近的距离，就是两个点横、纵坐标差值的最大值'''
+def minTimeToVisitAllPoints2(points):
+    p_start, times = points[0], 0
+
+    for point in points[1:]:
+        p_x, p_y = abs(point[0] - p_start[0]), abs(point[1] - p_start[1])
+        times += max(p_x, p_y)
+        p_start = point
+
+    return times
+
+'''#3: xk's solution.'''
+def minTimeToVisitAllPoints3(points):
+    times = 0
+    for i in range(1, len(points)):
+        start_point, next_point = points[i-1], points[i]
+        times += max(abs(next_point[0]-start_point[0]), abs(next_point[1]-start_point[1]))
+
+    return times
 #times1 = 49088
 points1 = [[559,511],[932,618],[-623,-443],[431,91],[838,-127],[773,-917],[-500,-910],[830,-417],[-870,73],[-864,-600],[450,535],[-479,-370],[856,573],[-549,369],[529,-462],[-839,-856],[-515,-447],[652,197],[-83,345],[-69,423],[310,-737],[78,-201],[443,958],[-311,988],[-477,30],[-376,-153],[-272,451],[322,-125],[-114,-214],[495,33],[371,-533],[-393,-224],[-405,-633],[-693,297],[504,210],[-427,-231],[315,27],[991,322],[811,-746],[252,373],[-737,-867],[-137,130],[507,380],[100,-638],[-296,700],[341,671],[-944,982],[937,-440],[40,-929],[-334,60],[-722,-92],[-35,-852],[25,-495],[185,671],[149,-452]]
 
@@ -52,4 +71,4 @@ points2 = [[1,1],[3,4],[-1,0]]  #7
 points3 = [[3,2],[-2,2]]  #5
 points4 = [[2,3],[-4,-7]]
 points5 = [[431,91],[838,-127]]  #407
-print(minTimeToVisitAllPoints(points2))
+print(minTimeToVisitAllPoints3(points5))
