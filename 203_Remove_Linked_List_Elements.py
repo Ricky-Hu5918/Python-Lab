@@ -70,3 +70,11 @@ def removeElements3(head, val):
 
     return prepre.next
 
+'''#4: recursion version'''
+def removeElements4(head, val):
+    if not head:
+        return head
+
+    head.next = removeElements4(head.next, val)
+
+    return head if head.val != val else head.next
