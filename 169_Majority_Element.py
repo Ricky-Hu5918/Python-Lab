@@ -32,6 +32,7 @@ def majorityElement2(nums):
 
 '''#3: normal method'''
 def majorityElement3(nums):
+    nums.sort()
     k = len(nums)//2
 
     for i in range(len(nums)):
@@ -54,4 +55,5 @@ def majorityElement5(nums):
     return nums[len(nums)//2]
 
 nums1 = [8,8,7,7,7]
-print(majorityElement5(nums1))
+nums2 = [2, 2, 1, 1, 1, 2, 2]
+print(majorityElement3(nums2))
