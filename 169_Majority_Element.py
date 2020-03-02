@@ -49,11 +49,23 @@ def majorityElement4(nums):
         if (idx+k < len(nums)) and (nums[idx] == nums[idx+k]):
             return each
 
-'''#5: '''
+'''#5: lj's method'''
 def majorityElement5(nums):
     nums.sort()
     return nums[len(nums)//2]
 
+'''#6: lj's method'''
+def majorityElement6(nums):
+    item, count = nums[0], 1
+
+    for each in nums[1:]:
+        count = count+1 if each == item else count-1
+
+        if count<0:
+            item, count = each, 0
+
+    return item
+
 nums1 = [8,8,7,7,7]
 nums2 = [2, 2, 1, 1, 1, 2, 2]
-print(majorityElement3(nums2))
+print(majorityElement6(nums1))
