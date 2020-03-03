@@ -16,7 +16,7 @@ Example 1:
 Input: "A"
 Output: 1
 '''
-
+'''26进制，满26进1'''
 import string
 def titleToNumber1(s):
     dict_numbers, k = dict(), 1
@@ -24,13 +24,16 @@ def titleToNumber1(s):
         dict_numbers[item] = k
         k += 1
 
-    s_list = list(s)
-    ll, tmp = len(s_list), 0
+    ll, tmp = len(s), 0
     for i in range(ll):
-        tmp += dict_numbers[s_list[i]]*(26**(ll-i-1))
+        tmp += dict_numbers[s[i]]*(26**(ll-i-1))
 
     return tmp
 
+'''#2: one-line code'''
+def titleToNumber2(s):
+    return sum([(ord(s[i])-64)*(26**(len(s)-i-1)) for i in range(len(s))])
+
 s1 = 'AB' #28
 s2 = 'AAA' #703
-print(titleToNumber1(s2))
+print(titleToNumber2(s2))
