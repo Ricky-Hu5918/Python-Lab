@@ -29,13 +29,12 @@ def trailingZeroes1(n):
 
     return res
 
-'''#2: '''
+'''#2: timeout'''
+from functools import reduce
 def trailingZeroes2(n):
-    fac_num, res = 1, 0
+    if n==0: return n
 
-    while (n>1):
-        fac_num *= n
-        n -= 1
+    fac_num, res = reduce(lambda x,y:x*y,range(1,n+1)), 0
 
     while (fac_num > 9) and (fac_num%10 == 0):
         res += 1
@@ -43,5 +42,23 @@ def trailingZeroes2(n):
 
     return res
 
+'''#3: the amount of number 5 is the amount of number 0 in n!'''
+def trailingZeroes3(n):
+    res = 0
+    while (n>=5):
+        res += (n//5)
+        n //= 5
+
+    return res
+
+'''#4: recursion version'''
+def trailingZeroes4(n):
+    if (n<5):
+        return 0
+
+    return (n//5) + trailingZeroes4(n//5)
+
+
+
 n1 = 6109
-print(trailingZeroes2(n1))
+print(trailingZeroes4(n1))
