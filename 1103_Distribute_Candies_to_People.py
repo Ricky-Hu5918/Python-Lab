@@ -22,20 +22,20 @@ On the third turn, ans[2] += 3, and the array is [1,2,3,0].
 On the fourth turn, ans[3] += 1 (because there is only one candy left), and the final array is [1,2,3,1].
 '''
 
-
+'''#1: 每次从头开始增加的部分为k*num_people, k从0开始计数'''
 def distributeCandies(candies, num_people):
     ans = [0 for i in range(num_people)]
     tmp = 0
-    print(ans)
 
-    idx = 0
+    idx, k = 0, 0
     while (sum(ans) <= candies):
         ans[idx] += tmp + 1 + idx
         if idx < num_people - 1:
             idx += 1
         else:
-            idx, tmp = 0, num_people
-        print(ans, idx)
+            k += 1
+            idx, tmp = 0, num_people * k
+        # print(ans, idx)
 
     tmp = ans.copy()
     tmp.pop(idx - 1)
@@ -46,4 +46,4 @@ def distributeCandies(candies, num_people):
 candies0, num_people0 = 25, 3  #[9, 7, 9]
 candies1, num_people1 = 26, 3  #[10, 7, 9]
 candies2, num_people2 = 30, 3  #[12, 9, 9]
-print(distributeCandies(candies0, num_people0))
+print(distributeCandies(candies1, num_people1))
