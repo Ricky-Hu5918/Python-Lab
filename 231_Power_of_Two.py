@@ -34,8 +34,12 @@ def isPowerOfTwo2(n):
 
     return False
 
+'''#3:'''
+def isPowerOfTwo3(n):
+    return (n > 0) and (bin(n).count('1') == 1)
+
 
 n1 = 0  #false
 n2 = 16 #true
 n3 = 218 #false
-print(isPowerOfTwo2(n2))
+print(isPowerOfTwo3(n2))
