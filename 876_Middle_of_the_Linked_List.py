@@ -61,3 +61,20 @@ def middleNode3(head):
 
     return slow
 
+'''#4：xk's better version'''
+def middleNode4(head):
+    cur = head
+    count = 1
+
+    while (cur):
+        count += 1
+        head = head.next
+
+    idx = (count//2) + 1
+    while (idx != 1):
+        idx -= 1
+        head = head.next
+
+    return head
+
+
