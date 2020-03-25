@@ -39,7 +39,7 @@ class MyCircularQueue:
         """
         Initialize your data structure here. Set the size of the queue to be k.
         """
-        self.circularQueue = [-1 for x in range(k+1)]
+        self.circularQueue = [-1 for x in range(k)]
         self.head = -1
         self.tail = -1
         self.size = k
@@ -107,14 +107,14 @@ MyCircularQueue = MyCircularQueue(3)  #set the size to be 3
 print(MyCircularQueue.enQueue(1)) #return true
 print(MyCircularQueue.enQueue(2)) #return true
 print(MyCircularQueue.enQueue(3)) #return true
-print(MyCircularQueue.enQueue(4)) #return false, the queue is full
+print(MyCircularQueue.enQueue(4), MyCircularQueue.circularQueue) #return false, the queue is full
 print(MyCircularQueue.Rear()) #return 3
 print(MyCircularQueue.Front()) #return 1
 print(MyCircularQueue.isFull()) #return true
 print(MyCircularQueue.deQueue()) #return true
 print(MyCircularQueue.enQueue(4)) #return true
 print(MyCircularQueue.Rear())  #return 4
+print(MyCircularQueue.deQueue(), MyCircularQueue.circularQueue) #return true
 print(MyCircularQueue.deQueue()) #return true
 print(MyCircularQueue.deQueue()) #return true
-print(MyCircularQueue.deQueue()) #return true
-print(MyCircularQueue.deQueue()) #return -1
+print(MyCircularQueue.deQueue(), MyCircularQueue.circularQueue) #return -1
