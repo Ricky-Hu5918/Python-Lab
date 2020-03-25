@@ -63,7 +63,7 @@ class MyCircularQueue:
         Delete an element from the circular queue. Return true if the operation is successful.
         """
         if (self.isEmpty() == True):
-            return -1
+            return False
 
         if (self.head == self.tail):
             self.head, self.tail = -1, -1
