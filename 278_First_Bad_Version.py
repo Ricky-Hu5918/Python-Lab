@@ -18,7 +18,7 @@ def firstBadVersion(self, n):
     :type n: int
     :rtype: int
     """
-    low, high = 0, n
+    low, high = 1, n
 
     while (low < high):
         mid = ((low + high) // 2)
@@ -30,3 +30,37 @@ def firstBadVersion(self, n):
             low = (mid + 1)
             if (isBadVersion(low) == True):
                 return low
+
+'''#2：二分法，a better version, only calling API once'''
+def firstBadVersion2(self, n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    low, high = 1, n
+
+    while (low < high):
+        mid = ((low + high) // 2)
+        if (isBadVersion(mid)):
+            high = (mid)
+        else:
+            low = (mid + 1)
+
+    return low
+
+'''#3: recursion version from xk, but timeout, maximum recursion depth'''
+def firstBadVersion3(self, n):
+    """
+    :type n: int
+    :rtype: int
+    """
+    return check_recursive(1, n)
+
+def check_recursive(start, end):
+    if start == end:
+        return start
+
+    if isBadVersion(start):
+        return start
+    else:
+        return check_recursive(start+1, end)
