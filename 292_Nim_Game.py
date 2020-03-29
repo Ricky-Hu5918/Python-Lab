@@ -20,3 +20,15 @@ def canWinNim1(n):
 
 def canWinNim2(n):
     return (n%4)
+
+'''recursion version, but timeout'''
+def canWinNim3(n):
+    if (n < 4):
+        return True
+    elif (n == 4):
+        return False
+    else:
+        return canWinNim3(n-4)
+
+n = 1346
+print(canWinNim3(n))
