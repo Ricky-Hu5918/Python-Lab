@@ -39,9 +39,25 @@ def isPowerOfThree2(n):
 def isPowerOfThree3(n):
     return True if n in list(map(lambda x:3**x, [x for x in range(20)])) else False
 
+'''#4: a better version'''
+def isPowerOfThree4(n):
+    if (n<=0):
+        return False
+    else:
+        return ((3**100)%n == 0)
+
+'''#5: xk's better version'''
+import math
+def isPowerOfThree5(n):
+    if (n<=0):
+        return False
+
+    res = (math.log10(n) / math.log10(3))
+    return (math.floor(res) == math.ceil(res))
+
 
 n1 = 27
 n2 = 45
 print(isPowerOfThree1(n1))
 print(isPowerOfThree2(n1))
-print(isPowerOfThree3(n2))
+print(isPowerOfThree5(n2))
