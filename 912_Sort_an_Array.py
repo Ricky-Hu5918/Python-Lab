@@ -15,7 +15,18 @@ Constraints:
 '''
 '''考察各种排序算法，目前仅会：冒泡排序，选择排序，和快速排序'''
 
-'''#1：冒泡排序，timeout'''
+'''#0：冒泡排序'''
+'''冒泡排序时针对相邻元素之间的比较，可以将大的数慢慢“沉底”(数组尾部)'''
+def sortArray0(nums):
+    n = len(nums)
+    for i in range(n):
+        for j in range(1, n-i):
+            if (nums[j-1] > nums[j]):
+                nums[j-1], nums[j] = nums[j], nums[j-1]
+
+    return nums
+
+'''#1：选择排序1，timeout'''
 def sortArray1(nums):
     for i in range(len(nums)):
         for j in range(i+1, len(nums)):
@@ -24,7 +35,7 @@ def sortArray1(nums):
 
     return nums
 
-'''#2: 选择排序, timeout'''
+'''#2: 选择排序2, timeout'''
 def sortArray2(nums):
     def find_min_item(arr):
         min_item, min_idx = arr[0], 0
@@ -69,3 +80,5 @@ print(sortArray1(nums))
 print(sortArray2(nums))
 nums1 = [5,1,1,2,0,0,6,10,-1]
 print(sortArray3(nums1))
+nums2 = [5,1,1,2,0,0,6,10,-1]
+print(sortArray0(nums2))
