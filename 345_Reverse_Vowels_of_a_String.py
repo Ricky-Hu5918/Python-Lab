@@ -55,6 +55,20 @@ def reverseVowels2(s):
 
     return ''.join(list_s)
 
+'''#3：lj's methond ,re'''
+import re
+def reverseVowels3(s):
+    vowel = '[aieouAIEOU]'
+    com = re.compile(vowel)
+    t = com.findall(s)
+    t.reverse()
+    k = re.sub(vowel, '✅', s)
+    for i in t:
+        k = re.sub('✅', i, k, 1)
+        # print(k)
+    return k
+
+
 s1 = 'aA'
 s2 = 'leetcoad'
-print(reverseVowels1(s1))
+print(reverseVowels3(s2))
