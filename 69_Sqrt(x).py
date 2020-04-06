@@ -43,7 +43,9 @@ def mySqrt2(x):
         else:
             low = mid + 1
 
-    return low if (low * low <= x) else low-1
+    '''返回low的话，需要判断一下，也可直接返回high'''
+    # return low if (low * low <= x) else low-1
+    return high
 
 '''#3: 牛顿迭代法'''
 def mySqrt3(x):
