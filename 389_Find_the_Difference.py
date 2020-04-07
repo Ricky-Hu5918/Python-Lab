@@ -16,6 +16,13 @@ Explanation:
 '''
 import collections
 class Solution:
+    def findTheDifference6(self, s: str, t: str) -> str:
+    #6：directly operate in string from xk
+        for item in s:
+            t = t.replace(item, '', 1)
+
+        return t
+
     def findTheDifference5(self, s: str, t: str) -> str:
     #5: 数字与自身异或结果为0
         ans = 0
@@ -59,3 +66,4 @@ print(f.findTheDifference2(s, t))
 print(f.findTheDifference3(s, t))
 print(f.findTheDifference4(s, t))
 print(f.findTheDifference5(s, t))
+print(f.findTheDifference6(s, t))
