@@ -17,6 +17,28 @@ If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you wan
 
 from collections import Counter
 class Solution:
+    '''xk;s method'''
+    def isSubsequence3(self, s: str, t: str) -> bool:
+        for char in s:
+            print(t)
+            if char in t:
+                t = t[t.index(char)+1:]
+            else:
+                return False
+
+        return True
+
+    '''#lj's method'''
+    def isSubsequence0(self, s: str, t: str) -> bool:
+        idx = -1
+
+        for char in s:
+            idx = t.find(char, idx + 1)
+            if (idx == -1):
+                return False
+
+        return True
+
     '''双指针'''
     def isSubsequence1(self, s: str, t: str) -> bool:
         if not s: return True
@@ -50,5 +72,9 @@ class Solution:
 s1, t1 = "acb", "aabdc"
 s2, t2 = "axb", "adxcb"
 test = Solution()
-print(test.isSubsequence1(s1,t1), test.isSubsequence2(s1, t1))
-print(test.isSubsequence1(s2, t2), test.isSubsequence2(s2, t2))
+# print(test.isSubsequence1(s1,t1), test.isSubsequence1(s2, t2))
+# print(test.isSubsequence2(s1, t1), test.isSubsequence2(s2, t2))
+print(test.isSubsequence3(s1, t1), test.isSubsequence3(s2, t2))
+a = "abcdefg"
+a = a[4:] + a[3:]
+print(a)
