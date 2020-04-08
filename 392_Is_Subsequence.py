@@ -17,6 +17,17 @@ If there are lots of incoming S, say S1, S2, ... , Sk where k >= 1B, and you wan
 
 from collections import Counter
 class Solution:
+    def isSubsequence4(self, s: str, t: str) -> bool:
+        i, j = 0, 0
+        '''更简洁版本的双指针'''
+        while (i < len(s)) and (j < len(t)):
+            if (s[i] == t[j]):
+                i += 1
+
+            j += 1
+
+        return (i == len(s))
+
     '''xk;s method'''
     def isSubsequence3(self, s: str, t: str) -> bool:
         for char in s:
