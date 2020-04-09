@@ -33,6 +33,29 @@ def maxSubArray2(nums):
 
     return max_sum
 
+'''#2: 更容易理解的动态规划'''
+'''
+动态规划的是首先对数组进行遍历，当前最大连续子序列和为 cur_sum，结果为 max_sum
+如果 cur_sum > 0，则说明 cur_sum 对结果有增益效果，则 cur_sum 保留并加上当前遍历数字
+如果 cur_sum <= 0，则说明 cur_sum 对结果无增益效果，需要舍弃，则 cur_sum 直接更新为当前遍历数字
+每次比较 cur_sum 和 max_sum，max_sum，遍历结束返回结果
+时间复杂度：O(n)
+'''
+def maxSubArray3(nums):
+    max_sum = nums[0]
+    cur_sum = 0
+
+    for each in nums:
+        if (cur_sum > 0):
+            cur_sum += each
+        else:
+            cur_sum = each
+        print(cur_sum)
+        max_sum = max(max_sum, cur_sum)
+
+    return max_sum
+
 nums = [-2,1,-3,4,-1,2,1,-5,4] #6
-print(maxSubArray1(nums))
-print(maxSubArray2(nums))
+# print(maxSubArray1(nums))
+# print(maxSubArray2(nums))
+print(maxSubArray3(nums))
