@@ -42,4 +42,17 @@ def readBinaryWatch1(num):
 
     return ans
 
-print(readBinaryWatch1(2))
+'''xk's method'''
+def readBinaryWatch2(num):
+    res = []
+
+    for hourItem in range(0, 12):
+        for minuteItem in range(0, 60):
+            if bin(hourItem).count('1') + bin(minuteItem).count('1') == num:
+                # hourStr = '{:d}'.format(hourItem)
+                # minuteStr = '{:02d}'.format(minuteItem)
+                res.append('{:d}'.format(hourItem) + ":" + '{:02d}'.format(minuteItem))
+
+    return res
+
+print(readBinaryWatch2(2))
