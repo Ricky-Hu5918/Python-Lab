@@ -108,5 +108,20 @@ class Solution:
 
         return (rlt)
 
+    '''参考题解'''
+    def toHex5(self, num: int) -> str:
+        print(num)
+        num &= 0xFFFFFFFF
+        print(num)
+        s = "0123456789abcdef"
+        res = ""
+        mask = 0b1111
+        while num > 0:
+            res += s[num & mask]
+            num >>= 4
+        return res[::-1] if res else "0"
+
+
 s= Solution()
-print(s.toHex1(-98), s.toHex2(-98), s.toHex3(-98))
+# print(s.toHex1(-98), s.toHex2(-98), s.toHex3(-98))
+print(s.toHex5(-98))
