@@ -30,5 +30,19 @@ def longestPalindrome(s):
 
     return count+flag
 
-s1 = "abccccdd"  #7
+'''xk's better solution'''
+def longestPalindrome2(s):
+    res = 0
+
+    for each in set(s):
+        res += (s.count(each)//2)*2
+
+    if res <len(s):
+        return res+1
+    else:
+        return res
+
+
+s1 = "bccccddeetyu"  #7
 print(longestPalindrome(s1))
+print(longestPalindrome2(s1))
