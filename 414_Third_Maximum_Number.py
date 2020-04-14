@@ -20,8 +20,20 @@ Both numbers with value 2 are both considered as second maximum.
 
 
 class Solution:
+    def thirdMax0(self, nums) -> int:
+    # xk's method
+        if (len(set(nums)) <= 2): return max(nums)
+
+        nums = set(nums)
+        nums.remove(max(nums))
+        nums.remove(max(nums))
+
+        return max(nums)
+
+
     def thirdMax1(self, nums) -> int:
-        if (len(nums) == 1) or (len(set(nums)) == 1): return nums[0]
+        #if (len(nums) == 1) or (len(set(nums)) == 1): return nums[0]
+        if (len(set(nums)) <= 2): return max(nums)
 
         res, count = [], 0
         for i in range(len(nums)):
@@ -36,7 +48,7 @@ class Solution:
             if count == 3:
                 return res[2]
 
-        return res[0]
+        #return res[0]
 
     '''# 2: quicksort, not that good'''
     def thirdMax2(self, nums) -> int:
@@ -68,5 +80,5 @@ class Solution:
         return set_nums[2]
 
 test = Solution()
-nums = [3,3,2,2,2,2]
-print(test.thirdMax1(nums), test.thirdMax2(nums), test.thirdMax3(nums))
+nums = [3,3,2,2,2,2,5,5,5,7,7,7,9]
+print(test.thirdMax1(nums), test.thirdMax2(nums), test.thirdMax3(nums), test.thirdMax0(nums))
