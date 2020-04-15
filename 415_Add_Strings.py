@@ -37,7 +37,43 @@ class Solution:
 
         return ans[::-1]
 
+    '''xk's method'''
+    def addStrings2(self, num1: str, num2: str) -> str:
+        num1, num2 = list(map(int, num1[::-1])), list(map(int, num2[::-1]))
+        print(num1, num2)
+        if len(num1)<len(num2):
+            num1, num2 = num2, num1
+
+        carry = 0
+        for i in range(len(num1)):
+            if i < len(num2):
+                n = num2[i]
+            else:
+                n = 0
+
+            tmp = n + carry + num1[i]
+            num1[i] = tmp%10
+            carry = tmp//10
+
+        if carry:
+            num1.append(1)
+
+        return ''.join(map(str, num1))[::-1]
+
+    '''参考题解'''
+    def addStrings3(self, num1: str, num2: str) -> str:
+        res = ""
+        i, j, carry = len(num1) - 1, len(num2) - 1, 0
+        while i >= 0 or j >= 0:
+            n1 = int(num1[i]) if i >= 0 else 0
+            n2 = int(num2[j]) if j >= 0 else 0
+            tmp = n1 + n2 + carry
+            carry = tmp // 10
+            res = str(tmp % 10) + res
+            i, j = i - 1, j - 1
+        return "1" + res if carry else res
+        
 
 test = Solution()
 num1, num2 = "1111", "999999"   #"1001110"
-print(test.addStrings1(num1, num2))
+print(test.addStrings2(num1, num2))
