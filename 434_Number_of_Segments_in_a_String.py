@@ -10,6 +10,17 @@ Output: 5
 
 
 class Solution:
+    def countSegments0(self, s: str) -> int:
+        segment_count = 0
+
+        '''题解的解法，下面的if语句太牛掰了'''
+        for i in range(len(s)):
+            if (i == 0 or s[i-1] == ' ') and s[i] != ' ':
+                segment_count += 1
+
+        return segment_count
+
+    '''same as #3'''
     def countSegments1(self, s: str) -> int:
         idx, tmp = 0, ''
         count = 0
@@ -36,6 +47,9 @@ class Solution:
 
         return count
 
+    '''split函数默认就是用空格来切片的，但不知道为何用split(' ')切出来的却不一样'''
+    def countSegments22(self, s: str) -> int:
+        return len(s.split())
 
     def countSegments3(self, s: str) -> int:
         tmp, ans = '', []
