@@ -39,13 +39,14 @@ class Solution:
 
     '''using built-in function'''
     def countSegments2(self, s: str) -> int:
-        s = s.split(' ')
-        count = 0
-        for each in s:
-            if each != '':
-                count += 1
-
-        return count
+        return sum((1 for each in s.split(' ') if each != ''))
+        # s = s.split(' ')
+        # count = 0
+        # for each in s:
+        #     if each != '':
+        #         count += 1
+        #
+        # return count
 
     '''split函数默认就是用空格来切片的，但不知道为何用split(' ')切出来的却不一样'''
     def countSegments22(self, s: str) -> int:
