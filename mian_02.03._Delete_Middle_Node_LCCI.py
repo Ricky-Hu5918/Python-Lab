@@ -68,14 +68,11 @@ class DeleteNode:
         H = ListNode(-1) #伪头结点
         H.next = head
         pre, cur = H, H.next
-        while cur.next:
+        while cur:
             if (cur.val == val):
                 pre.next = cur.next  #直接删
             cur = cur.next
             pre = pre.next
-
-        if not cur.next:
-            pre.next = None
 
         return H.next
 
@@ -94,7 +91,22 @@ class DeleteNode:
                 cur = cur.next
             pre = pre.next
 
-        if not cur.next:
+        if cur.val == val and not cur.next: #处理最后一个节点
             pre.next = None
 
         return H.next
+
+    '''A better way'''
+    def deleteNode3(self, head: ListNode, val: int) -> ListNode:
+        if not head: return head
+        if head.val == val: return head.next
+
+        pre, cur = head, head.next
+        while cur:
+            if cur.val == val:
+                pre.next = cur.next
+
+            cur = cur.next
+            pre = pre.next
+
+        return head
