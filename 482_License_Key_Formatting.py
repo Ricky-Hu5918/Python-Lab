@@ -42,11 +42,12 @@ class Solution:
 
     # 1: normal way
     def licenseKeyFormatting1(self, S: str, K: int) -> str:
-        ans = ''
-        S = S.upper()   #全部变成大写字母
-        for each in S:  #去掉所有破折号
-            if each != '-':
-                ans += each
+        #ans = ''
+        # S = S.upper()   #全部变成大写字母
+        # for each in S:  #去掉所有破折号
+        #     if each != '-':
+        #         ans += each
+        ans = S.replace('-', '').upper()   #去破折号变大写字母，一行代码搞定， from xk
 
         if len(ans)<=K: #处理长度小于K的特殊情况
             return ans
