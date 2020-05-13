@@ -40,6 +40,19 @@ def reverseWords(s):
         print(each)
 '''
 
+def reverseWords2(s):
+    ans = []
+    tmp = ''
+    for each in s:
+        if each != ' ':
+            tmp += each
+        else:
+            ans.append(tmp[::-1])
+            tmp = ''
+    if tmp: ans.append(tmp[::-1])
+    return ' '.join(ans)
+
+
 if __name__ == '__main__':
     s = "Let's take LeetCode contest" #"God Ding"   #"Let's take LeetCode contest"
     ll = reverseWords(s)
