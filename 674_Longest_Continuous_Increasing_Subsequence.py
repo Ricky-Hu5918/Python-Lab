@@ -47,6 +47,22 @@ class Solution:
 
         return max_count+1 if max_count else 1
 
+    '''# 0: better than #1'''
+    def findLengthOfLCIS0(self, nums):
+        if not nums: return 0
+        count, max_count = 1, 1
+
+        for i in range(len(nums)-1):
+            if nums[i]<nums[i+1]:
+                count += 1
+            else:
+                count = 1
+
+            if max_count<count:
+                max_count = count
+
+        return max_count
+
 test = Solution()
 nums = [1,5,3,7,48]
-print(test.findLengthOfLCIS1(nums), test.findLengthOfLCIS2(nums))
+print(test.findLengthOfLCIS1(nums), test.findLengthOfLCIS2(nums), test.findLengthOfLCIS0(nums))
