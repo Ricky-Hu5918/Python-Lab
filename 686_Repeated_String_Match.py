@@ -11,10 +11,7 @@ The length of A and B will be between 1 and 10000.
 
 class Solution:
     def repeatedStringMatch1(self, A: str, B: str) -> int:
-        if len(B)<=len(A) and not set(B).issubset(set(A)):
-            return -1
-
-        if len(B)>len(A) and not set(B).issubset(set(A)):
+        if not set(B).issubset(set(A)):
             return -1
 
         count = 2
@@ -26,6 +23,21 @@ class Solution:
 
         return 1
 
+    '''xk's method'''
+    def repeatedStringMatch2(self, A: str, B: str) -> int:
+        if len(set(B)) > len(set(A)):
+            return -1
+
+        # the repeat number will be either len(B)/len(A) or len(B)/len(A) +1
+        repeatNum = ceil(len(B) / len(A))
+        repeatNums = [repeatNum, repeatNum + 1]
+        # print(repeatNums)
+
+        for i in repeatNums:
+            if B in A * i:
+                return i
+
+        return -1
 
 test = Solution()
 A1, B1 = "aaaaaaaaaaaaaaaaaaaaaab", "ba"  #2
