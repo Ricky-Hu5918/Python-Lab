@@ -50,5 +50,18 @@ class Solution:
     def hasAlternatingBits1(self, n: int) -> bool:
         return ("00" not in bin(n)) and ("11" not in bin(n))
 
+    '''xk's method'''
+    def hasAlternatingBits0(self, n: int) -> bool:
+        if n <= 2: return True
+
+        base = n & 1
+        while n:
+            n >>= 1
+            if base == (n & 1):
+                return False
+            base = (n & 1)
+
+        return True
+
 test = Solution()
 print(test.hasAlternatingBits1(90), test.hasAlternatingBits3(26))
