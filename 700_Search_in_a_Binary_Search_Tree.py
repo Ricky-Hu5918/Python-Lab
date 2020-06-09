@@ -30,6 +30,18 @@ Note that an empty tree is represented by NULL, therefore you would see the expe
 #         self.right = None
 
 class Solution:
+    def searchBST3(self, root: TreeNode, val: int) -> TreeNode:
+        #3: xk's version
+        if root == None: return root
+
+        if root.val > val:
+            return self.searchBST3(root.left, val)
+        elif root.val < val:
+            return self.searchBST3(root.right, val)
+        else:
+            return root
+
+
     def searchBST2(self, root: TreeNode, val: int) -> TreeNode:
         # 2: recursion
         if root == None: return root
