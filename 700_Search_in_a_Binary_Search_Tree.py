@@ -30,8 +30,15 @@ Note that an empty tree is represented by NULL, therefore you would see the expe
 #         self.right = None
 
 class Solution:
+    def searchBST4(self, root: TreeNode, val: int) -> TreeNode:
+        #4: another iterate method
+        while (root != None) and (root.val != val):
+            root = root.left if val < root.val else root.right
+
+        return root
+
+    '''# 3: xk's version'''
     def searchBST3(self, root: TreeNode, val: int) -> TreeNode:
-        #3: xk's version
         if root == None: return root
 
         if root.val > val:
@@ -41,9 +48,8 @@ class Solution:
         else:
             return root
 
-
+    '''# 2: recursion'''
     def searchBST2(self, root: TreeNode, val: int) -> TreeNode:
-        # 2: recursion
         if root == None: return root
 
         if root.val == val:
