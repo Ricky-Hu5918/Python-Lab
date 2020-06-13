@@ -24,19 +24,30 @@ bits[i] is always 0 or 1.
 
 class Solution:
     def isOneBitCharacter1(self, bits) -> bool:
-        flag_0, falg_1 = False, False
+        flag = False
         idx = 0
         while idx < len(bits):
             if (bits[idx] == 0):
                 idx += 1
-                flag_0, falg_1 = True, False
+                flag = True
             else:
                 idx += 2
-                flag_0, falg_1 = False, True
+                flag = False
 
-        return flag_0
+        return flag
+
+    '''#2: 如果倒数第二个是0的话，一定是True；其它情况下则判断最后一个0前面连续1的个数，偶数则为True，奇数则为False'''
+    def isOneBitCharacter2(self, bits) -> bool:
+        count = 0
+        idx = len(bits) - 2
+        while (idx >= 0) and (bits[idx] == 1):
+            count += 1
+            idx -= 1
+
+        return (count % 2 == 0)
+
 
 
 test = Solution()
-bits = [1,1,0,1,0]  #False
-print(test.isOneBitCharacter1(bits))
+bits = [1,1,0,1,0,0]  #True
+print(test.isOneBitCharacter1(bits), test.isOneBitCharacter2(bits))
