@@ -1,6 +1,8 @@
 #Leetcode.num = 804
+import collections
+
 class Solution:
-    def uniqueMorseRepresentations(self, words: List[str]) -> int:
+    def uniqueMorseRepresentations(self, words) -> int:
         morse_dic = {"a":".-", "b":"-...", "c":"-.-.", "d":"-..", "e":".", "f":"..-.","g":"--.", "h":"....", "i":"..","j":".---","k":"-.-","l":".-..","m":"--","n":"-.","o":"---","p":".--.", "q":"--.-","r":".-.",'s':"...","t":"-","u":"..-","v":"...-","w":".--","x":"-..-", "y":"-.--", "z":"--.."}
 
         if (len(words) == 0):
@@ -26,8 +28,11 @@ class Solution:
 
         return len(morse_words)
 
-'''
-#aonther way to address this problem
+
+    '''#aonther way to address this problem'''
+    def uniqueMorseRepresentations2(self, words) -> int:
+        morse_dic = {"a":".-", "b":"-...", "c":"-.-.", "d":"-..", "e":".", "f":"..-.","g":"--.", "h":"....", "i":"..","j":".---","k":"-.-","l":".-..","m":"--","n":"-.","o":"---","p":".--.", "q":"--.-","r":".-.",'s':"...","t":"-","u":"..-","v":"...-","w":".--","x":"-..-", "y":"-.--", "z":"--.."}
+
         morse_words = set()  #利用集合元素的去重性
         for each in words:
             str1 = ''
@@ -36,5 +41,21 @@ class Solution:
             morse_words.add(str1)
         
         return len(morse_words)
-'''
-    
+
+
+    def uniqueMorseRepresentations3(self, words) -> int:
+        mapMorse = [".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..", ".---", "-.-", ".-..", "--", "-.", "---",
+                    ".--.", "--.-", ".-.", "...", "-", "..-", "...-", ".--", "-..-", "-.--", "--.."]
+        morse_words = []
+
+        for each in words:
+            tmp = ''
+            for ch in each:
+                tmp += mapMorse[ord(ch) - 97]
+            morse_words.append(tmp)
+
+        return len(collections.Counter(morse_words).keys())
+
+test = Solution()
+words = ["gin", "zen", "gig", "msg"]
+print(test.uniqueMorseRepresentations(words), test.uniqueMorseRepresentations2(words), test.uniqueMorseRepresentations3(words))
