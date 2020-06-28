@@ -48,12 +48,28 @@ class Solution:
         for i in range(len(S)-1, -1, -1):
             if S[i] == C:
                 right = i
-
-            if right != None:
+            elif right != None:
                 res[i] = min(res[i], right - i)
 
         return res
 
+    '''xk's much better solution, still don't understand'''
+    def shortestToChar(self, S: str, C: str):
+        res = []
+        S = ' ' + S
+        lMat = 0  # here lMat means: last match
+        for i in range(len(S)):
+            res.append(i - lMat)
+            if S[i] == C:
+                if lMat:
+                    res[(i + lMat) // 2 + (i + lMat) % 2:] = res[(i + lMat) // 2:lMat - 1:-1]
+                else:
+                    res[0::1] = res[i::-1]
+                print(res)
+                lMat = i
+        return res[1:]
+
 test = Solution()
 S, C = "loveleetcode", 'e'
-print(test.shortestToChar1(S,C), test.shortestToChar2(S,C))
+# print(test.shortestToChar1(S,C), test.shortestToChar2(S,C))
+print(test.shortestToChar(S,C))
