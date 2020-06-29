@@ -67,6 +67,18 @@ class Solution:
 
         return res
 
+    '''题解方法，巧妙的化解了末尾连续字符的情况，也没有使用哨兵字符'''
+    def largeGroupPositions(self, S: str):
+        ans = []
+        i = 0 # The start of each group
+        for j in range(len(S)):
+            if j == len(S) - 1 or S[j] != S[j+1]:
+                # Here, [i, j] represents a group.
+                if j-i+1 >= 3:
+                    ans.append([i, j])
+                i = j+1
+        return ans
+
 test = Solution()
 S = "abcdddeeeeaabbbcddd"
-print(test.largeGroupPositions1(S), test.largeGroupPositions2(S))
+print(test.largeGroupPositions1(S), test.largeGroupPositions2(S), test.largeGroupPositions(S))
