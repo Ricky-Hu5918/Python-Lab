@@ -79,6 +79,23 @@ class Solution:
                 i = j+1
         return ans
 
+    '''xk's method, pretty good!'''
+    def largeGroupPositions4(self, S: str):
+        res, preIdx, record = [], 0, {}
+
+        for i in range(1, len(S)):
+            if S[preIdx] != S[i]:
+                preIdx = i
+            record[preIdx] = i
+        print(record)
+        for k, v in record.items():
+            if v - k > 1:
+                res.append([k, v])
+
+        return res
+
 test = Solution()
 S = "abcdddeeeeaabbbcddd"
-print(test.largeGroupPositions1(S), test.largeGroupPositions2(S), test.largeGroupPositions(S))
+S1 = "aaa"
+#print(test.largeGroupPositions1(S), test.largeGroupPositions2(S), test.largeGroupPositions(S))
+print(test.largeGroupPositions4(S))
