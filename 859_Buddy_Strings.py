@@ -30,7 +30,7 @@ A and B consist only of lowercase letters.
 import collections
 class Solution:
     def buddyStrings(self, A: str, B: str) -> bool:
-        if (not A or not B) or (len(A) != len(B)) or (len(set(A)) != len(set(B))) or (
+        if (len(A) != len(B)) or (len(set(A)) != len(set(B))) or (
                 collections.Counter(A) != collections.Counter(B)):
             return False
 
