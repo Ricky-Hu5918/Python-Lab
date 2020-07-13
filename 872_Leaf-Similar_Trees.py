@@ -39,4 +39,16 @@ class Solution:
 
         return collect_leaves(root1) == collect_leaves(root2)
 
+    '''# 2: 深度搜索, yield生成器的用法'''
+    def leafSimilar2(self, root1: TreeNode, root2: TreeNode) -> bool:
+        def dfs(node):
+            if node:
+                if not node.left and not node.right:
+                    yield node.val
+
+                yield from dfs(node.left)
+                yield from dfs(node.right)
+
+        return list(dfs(root1)) == list(dfs(root2))
+
 root1, root2 = [3,5,1,6,2,9,8,null,null,7,4], [3,5,1,6,7,4,2,null,null,null,null,null,null,9,8]
