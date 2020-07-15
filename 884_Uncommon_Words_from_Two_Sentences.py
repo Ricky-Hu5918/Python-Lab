@@ -42,6 +42,21 @@ class Solution:
 
         return list(tmp)
 
+    '''# 3:'''
+    def uncommonFromSentences3(self, A: str, B: str):
+        C = collections.Counter(A.split()) + collections.Counter(B.split())
+        return [k for k, v in C.items() if v == 1]
+
+    '''# 2:'''
+    def uncommonFromSentences2(self, A: str, B: str):
+        C = (A + ' ' + B).split()
+        res = []
+        for c in C:
+            if C.count(c) == 1:
+                res.append(c)
+
+        return res
+
 
 test = Solution()
 A, B = "this apple is sweet sweet ", "this apple is super sour"
