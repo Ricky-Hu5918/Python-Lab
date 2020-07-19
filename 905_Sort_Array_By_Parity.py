@@ -24,7 +24,11 @@ class Solution:
 
         return A
 
-    '''# 2: 快速排序，递归'''
+    '''同#1，使用了额外空间'''
+    def sortArrayByParity22(self, A):
+        return [i for i in A if i % 2 == 0] + [i for i in A if i % 2 != 0]
+
+    '''# 2: 快速排序，递归，太冗余了'''
     def sortArrayByParity2(self, A):
         def quickSort(arry):
             if len(arry)<2:
