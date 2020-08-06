@@ -43,6 +43,24 @@ class Solution:
 
         return True
 
+    '''先上山再下山，满足要求的话走的步数应该等于数组长度'''
+    def validMountainArray2(self, A) -> bool:
+        N = len(A)
+        i = 0
+
+        '''walk up until reach the mountain'''
+        while i+1<N and A[i]<A[i+1]:
+            i += 1
+
+        if i == 0 or i == N-1:
+            return False
+
+        '''walk down from the mountain to the end of the array'''
+        while i+1<N and A[i]>A[i+1]:
+            i += 1
+
+        return i == N-1
+
 test = Solution()
 A = [0,1,3,2,1,2]
-print(test.validMountainArray(A))
+print(test.validMountainArray(A), test.validMountainArray2(A))
