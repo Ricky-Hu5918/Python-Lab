@@ -43,6 +43,24 @@ class Solution:
 
         return res
 
+    '''#2'''
+    def numSmallerByFrequency2(self, queries, words):
+        def f(x):
+            return Counter(x)[min(Counter(x))]
+
+        q_freq = list(map(f, queries))
+        w_freq = list(map(f, words))
+
+        res = []
+        for q in q_freq:
+            count = 0
+            for w in w_freq:
+                if q < w:
+                    count += 1
+            res.append(count)
+
+        return res
+
 test = Solution()
 queries, words = ["bbb","cc"], ["a","aa","aaa","aaaa"]
-print(test.numSmallerByFrequency1(queries,words))
+print(test.numSmallerByFrequency1(queries,words), test.numSmallerByFrequency2(queries,words))
