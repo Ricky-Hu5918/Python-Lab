@@ -30,5 +30,17 @@ def countCharacters(words, chars):
 
     return res
 
+'''#2: same as #1'''
+def countCharacters2(words, chars):
+    chars_counter = Counter(chars)
+
+    tmp = ''
+    for word in words:
+        word_counter = Counter(word)
+        if chars_counter & word_counter == word_counter:
+            tmp += word
+
+    return len(tmp)
+
 words, chars = ["hello","world","leetcode"], "welldonehoneyr"
-print(countCharacters(words, chars)) #10
+print(countCharacters(words, chars), countCharacters2(words,chars)) #10
